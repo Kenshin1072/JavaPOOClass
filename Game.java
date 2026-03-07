@@ -7,8 +7,6 @@ public class Game {
 
         hero.attack(villain);
         villain.especialAttack(hero);
-        hero.takeDamage(20);
-        villain.takeDamage(30);
 
         System.out.println("--- Final Status ---");
         System.out.println("Hero: Health = " + hero.getHealth() + ", Mana = " + hero.getMana());
