@@ -1,0 +1,15 @@
+*.class
+
+.vscode/
+.idea/
+*.iml
+.metadata/
+
+bin/
+target/
+
+openJdk-25/
+.settings/
+.DS_Store
+.classpath
+.project
