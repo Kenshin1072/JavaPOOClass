@@ -12,6 +12,6 @@ This project was developed for the Object-Oriented Programming (OOP) class at FI
 
 ## How to Run
 1. Ensure you have the JDK installed.
-2. Compile and run the `TestCode.java` file to see the combat simulation in the console.
+2. Compile and run the `Game.java` file to see the combat simulation in the console.
 3. Use `attack()` or `specialAttack()` for character interactions.
 4. Use `takeDamage()` manually only for environmental interactions (like traps or hazards).
