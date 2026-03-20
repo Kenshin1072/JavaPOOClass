@@ -12,6 +12,13 @@ This project was developed for the Object-Oriented Programming (OOP) class at FI
 
 ## How to Run
 1. Ensure you have the JDK installed.
-2. Compile and run the `Game.java` file to see the combat simulation in the console.
+2. Compile and run the following comand:
+``` bash
+# 1. Compilar (Envia os arquivos .class para a pasta bin)
+javac -d bin src/br/com/model/*.java src/br/com/main/*.java
+
+# 2. Executar (Lê os arquivos da pasta bin)
+java -cp bin br.com.main.Game
+```
 3. Use `attack()` or `specialAttack()` for character interactions.
 4. Use `takeDamage()` manually only for environmental interactions (like traps or hazards).

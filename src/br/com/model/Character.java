@@ -1,4 +1,4 @@
-package br.com.fiapride.model;
+package br.com.model;
 
 public class Character {
     private String name;

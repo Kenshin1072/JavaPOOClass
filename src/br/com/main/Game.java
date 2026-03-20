@@ -1,5 +1,5 @@
-package br.com.fiapride.main;
-import br.com.fiapride.model.Character;
+package br.com.main;
+import br.com.model.Character;
 
 public class Game {
     public static void main(String[] args) {
