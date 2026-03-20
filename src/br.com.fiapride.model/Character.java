@@ -1,8 +1,10 @@
+package br.com.fiapride.model;
+
 public class Character {
     private String name;
-    private int health = 100;
-    private int mana = 50; // Added missing semicolon
-    private int power = 10;
+    private int health;
+    private int mana; 
+    private int power;
 
     public Character(String name, int health, int mana, int power) {
         this.setName(name);
@@ -15,11 +17,11 @@ public class Character {
         if (damage > 0) {
             this.health -= damage;
 
-            if (this.health <= 0){ // Changed to <= to be more precise
+            if (this.health <= 0){ 
                 this.health = 0;
                 System.out.println(this.name + " died.");
             }
-            // Added spaces inside the string for better readability
+            
             System.out.println(this.name + " received " + damage + " damage. Health: " + this.health);
         } else {
             System.out.println("Invalid damage!");
@@ -41,7 +43,7 @@ public class Character {
             this.mana -= manaCost;
             System.out.println(this.name + " attacked " + target.getName() + " with magic!");
             target.takeDamage(especialDamage);
-        } else { // Fixed: changed brackets [] to braces {}
+        } else { 
             System.out.println(this.name + " doesn't have enough mana!");
             target.takeDamage(this.power);
         }

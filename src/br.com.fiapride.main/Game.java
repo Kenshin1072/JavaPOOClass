@@ -1,3 +1,6 @@
+package br.com.fiapride.main;
+import br.com.fiapride.model.Character;
+
 public class Game {
     public static void main(String[] args) {
         System.err.println("Testing Character class...");
