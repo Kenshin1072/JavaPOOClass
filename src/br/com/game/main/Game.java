@@ -1,5 +1,5 @@
-package br.com.main;
-import br.com.model.Character;
+package br.com.game.main;
+import br.com.model.game.Character;
 
 public class Game {
     public static void main(String[] args) {

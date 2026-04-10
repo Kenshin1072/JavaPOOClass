@@ -1,16 +1,20 @@
-package br.com.model;
+package br.com.game.model;
 
 public class Character {
     private String name;
     private int health;
     private int mana; 
     private int power;
+    private int inteligence;
 
-    public Character(String name, int health, int mana, int power) {
+    private Weapon weapon;
+
+    public Character(String name, int health, int mana, int power, int inteligence) {
         this.setName(name);
         this.setHealth(health);
         this.setMana(mana);
         this.setPower(power);
+        this.setInteligence(inteligence);
     }
 
     public void takeDamage(int damage) {
@@ -25,27 +29,6 @@ public class Character {
             System.out.println(this.name + " received " + damage + " damage. Health: " + this.health);
         } else {
             System.out.println("Invalid damage!");
-        }
-    }
-
-    // Normal attack 
-    public void attack(Character target) {
-        System.out.println(this.name + " attacked " + target.getName());
-        target.takeDamage(this.power);
-    }
-
-    // Attack using mana for more damage
-    public void especialAttack(Character target) {
-        int manaCost = 20;
-        int especialDamage = this.power * 3;
-
-        if (this.mana >= manaCost) {
-            this.mana -= manaCost;
-            System.out.println(this.name + " attacked " + target.getName() + " with magic!");
-            target.takeDamage(especialDamage);
-        } else { 
-            System.out.println(this.name + " doesn't have enough mana!");
-            target.takeDamage(this.power);
         }
     }
 
@@ -92,5 +75,22 @@ public class Character {
             this.power = 0; // Default to 0 if invalid power is provided
             System.out.println("Invalid power! Setting to 0.");
         }
+    }
+
+    public int getInteligence() { return inteligence; }
+
+    private void setInteligence(int inteligence) {
+        if (inteligence >= 0) {
+            this.inteligence = inteligence;
+        } else {
+            this.inteligence = 0;
+            System.out.println("Invalid inteligence! Setting to 0.");
+        }
+    }
+
+    public Weapon getWeapon() { return weapon; }
+
+    public Weapon equipWeapon( Weapon weapon ) {
+        this.weapon = weapon;
     }
 }
