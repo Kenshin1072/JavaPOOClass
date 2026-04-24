@@ -1,14 +1,14 @@
-package br.com.game.model;
+package src.br.com.game.model.weapon;
 
 public class Weapon {
-    private int power;
     private String name;
-    private String type;
+    private int power;
+    private WeaponType type;
     private String description;
 
-    public Weapon(int power, String name, String type, String description) {
-        this.setPower(power);
+    public Weapon(String name, int power, WeaponType type, String description) {
         this.setName(name);
+        this.setPower(power);
         this.setType(type);
         this.setDescription(description);
     }
@@ -43,7 +43,7 @@ public class Weapon {
 
     public String getDescription() { return description; }
 
-    private void setDescription() {
-        this.description = (description != null && description.trim().isEmpty()) ? description : "No description"
+    private void setDescription(String description) {
+        this.description = (description != null) ? description : "No description";
     }
 }

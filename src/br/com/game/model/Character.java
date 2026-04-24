@@ -1,20 +1,23 @@
-package br.com.game.model;
+package src.br.com.game.model;
+import src.br.com.game.model.weapon.Weapon;
+import src.br.com.game.model.combat.Attack;
 
 public class Character {
     private String name;
     private int health;
     private int mana; 
     private int power;
-    private int inteligence;
+    private int intelligence;
 
     private Weapon weapon;
 
-    public Character(String name, int health, int mana, int power, int inteligence) {
+    public Character(String name, int health, int mana, int power, int intelligence, Weapon weapon) {
         this.setName(name);
         this.setHealth(health);
         this.setMana(mana);
         this.setPower(power);
-        this.setInteligence(inteligence);
+        this.setIntelligence(intelligence);
+        this.equipWeapon(weapon);
     }
 
     public void takeDamage(int damage) {
@@ -29,6 +32,14 @@ public class Character {
             System.out.println(this.name + " received " + damage + " damage. Health: " + this.health);
         } else {
             System.out.println("Invalid damage!");
+        }
+    }
+
+    public void performAttack(Attack attack, Character target) {
+        if (attack != null) {
+            attack.execute(this, target);
+        } else {
+            System.out.println(this + " has no target to attack");
         }
     }
 
@@ -66,9 +77,11 @@ public class Character {
 
     }
 
-    public int getPower() { return power; }
+    public int getCharacterPower() { return power; }
 
-    private void setPower(int power) { 
+    public int getTotalPower() { return power + (weapon != null ? weapon.getPower(): 0); }
+
+    private void setPower(int power) {
         if (power >= 0) {
             this.power = power; // Ensure power doesn't go below 0
         } else {
@@ -77,20 +90,24 @@ public class Character {
         }
     }
 
-    public int getInteligence() { return inteligence; }
+    public int getCharacterIntelligence() { return intelligence; }
 
-    private void setInteligence(int inteligence) {
-        if (inteligence >= 0) {
-            this.inteligence = inteligence;
+    public int getTotalIntelligence() {
+        return intelligence + (weapon != null ? weapon.getPower(): 0);
+    }
+
+    private void setIntelligence(int intelligence) {
+        if (intelligence >= 0) {
+            this.intelligence = intelligence;
         } else {
-            this.inteligence = 0;
-            System.out.println("Invalid inteligence! Setting to 0.");
+            this.intelligence = 0;
+            System.out.println("Invalid intelligence! Setting to 0.");
         }
     }
 
     public Weapon getWeapon() { return weapon; }
 
-    public Weapon equipWeapon( Weapon weapon ) {
+    public void equipWeapon( Weapon weapon ) {
         this.weapon = weapon;
     }
 }

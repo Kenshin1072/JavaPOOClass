@@ -1,14 +1,20 @@
-package br.com.game.model;
+package src.br.com.game.model.combat;
+import src.br.com.game.model.Character;
+import src.br.com.game.model.weapon.WeaponType;
 
-class PhysicAttack implements Attack {
 
-    @override
+public class PhysicAttack implements Attack {
+
+    @Override
     public void execute(Character origin, Character target) {
-        
-        int damage = origin.getPower() * origin.weapon.getPower()
 
-        System.out.println(origin.getName() + " attacked " + target.getName());
+        int damage;
+        if (origin.getWeapon().getType() == WeaponType.SWORD || origin.getWeapon().getType() == WeaponType.BOW) {
+            damage = origin.getTotalPower();
+        } else {
+            damage = origin.getCharacterPower();
+        }
+        System.out.println(origin.getName() + " attacks " + target.getName() + " with " + origin.getWeapon().getName() + ".");
         target.takeDamage(damage);
-        println(target.getName() + "received" + damage + "damage");
     }
 }

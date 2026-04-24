@@ -1,4 +1,4 @@
-package br.com.game.model;
+package src.br.com.game.model.weapon;
 
 public enum WeaponType {
     SWORD,
