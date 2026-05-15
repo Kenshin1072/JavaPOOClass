@@ -6,11 +6,9 @@ public class MagicAttack implements Attack {
     @Override
     public void execute(Character origin, Character target) {
         int damage;
-        if (origin.getWeapon().getType() == WeaponType.STAFF) {
-            damage = origin.getTotalIntelligence();
-        } else {
-            damage = origin.getCharacterIntelligence();
-        }
+        
+        damage = origin.getTotalIntelligence();
+
         System.out.println(origin.getName() + " attacks " + target.getName() + " with " + origin.getWeapon().getName() + ".");
         target.takeDamage(damage);
     }

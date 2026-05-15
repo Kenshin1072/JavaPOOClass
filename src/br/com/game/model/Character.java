@@ -6,18 +6,42 @@ public class Character {
     private String name;
     private int health;
     private int mana; 
-    private int power;
+    private int strenght;
     private int intelligence;
 
     private Weapon weapon;
 
-    public Character(String name, int health, int mana, int power, int intelligence, Weapon weapon) {
+    private Character(String name, int health, int mana, int strenght, int intelligence, Weapon weapon) {
         this.setName(name);
         this.setHealth(health);
         this.setMana(mana);
-        this.setPower(power);
+        this.setStrenght(strenght);
         this.setIntelligence(intelligence);
         this.equipWeapon(weapon);
+    }
+
+    public static Character createCharacter(String name, int initialHealth, int initialMana, int initialStrenght, int initialIntelligence, Weapon weapon) {
+        if (name == null || !name.trim().isEmpty()) {
+            throw new IllegalArgumentException("The character's name is invalid!");
+        }
+
+        if (initialHealth <= 0) {
+            throw new IllegalArgumentException("The character's health can't be 0!");
+        }
+
+        if (initialMana <= 0) {
+            throw new IllegalArgumentException("The character's mana can't be 0!");
+        }
+
+        if (initialStrenght <= 0) {
+            throw new IllegalArgumentException("The character's strenght can't be 0!");
+        }
+
+        if (initialIntelligence <= 0) {
+            throw new IllegalArgumentException("The character's intelligence can't be 0!");
+        }
+
+        return new Character(name, initialHealth, initialMana, initialStrenght, initialIntelligence, weapon);
     }
 
     public void takeDamage(int damage) {
@@ -35,79 +59,33 @@ public class Character {
         }
     }
 
-    public void performAttack(Attack attack, Character target) {
-        if (attack != null) {
-            attack.execute(this, target);
-        } else {
-            System.out.println(this + " has no target to attack");
-        }
+    public void performAttack(Character target) {
+        this.weapon.getAttack().execute(this, target);
     }
 
-    // Getters for the main
+    // Name functions
     public String getName() { return name; }
+    private void setName(String name) { this.name = name; }
 
-    private void setName(String name) { 
-        if (name != null && !name.trim().isEmpty()) {
-        this.name = name; 
-        } else {
-            this.name = "Unknown"; // Default name if invalid name is provided
-            System.out.println("Invalid name!");
-        }
-    }
-
+    // Health functions
     public int getHealth() { return health; }
+    private void setHealth(int health) { this.health = health; }
 
-    private void setHealth(int health) { 
-        if (health > 0) {
-            this.health = health; // Ensure health doesn't go below 0
-        } else {
-            this.health = 0; // Default to 0 if invalid health is provided
-            System.out.println("Invalid health! Setting to 0.");
-        }
-    }
+    // mana functions
     public int getMana() { return mana; }
+    private void setMana(int mana) { this.mana = mana; }
 
-    private void setMana(int mana) { 
-        if (mana >= 0) {
-            this.mana = mana; // Ensure mana doesn't go below 0
-        } else {
-            this.mana = 0; // Default to 0 if invalid mana is provided
-            System.out.println("Invalid mana! Setting to 0.");
-        }
+    // strenght functions
+    public int getCharacterStrenght() { return strenght; }
+    public int getTotalStrenght() { return strenght + (weapon != null ? weapon.getWeaponPower(): 0); }
+    private void setStrenght(int strenght) { this.strenght = strenght; }
 
-    }
-
-    public int getCharacterPower() { return power; }
-
-    public int getTotalPower() { return power + (weapon != null ? weapon.getPower(): 0); }
-
-    private void setPower(int power) {
-        if (power >= 0) {
-            this.power = power; // Ensure power doesn't go below 0
-        } else {
-            this.power = 0; // Default to 0 if invalid power is provided
-            System.out.println("Invalid power! Setting to 0.");
-        }
-    }
-
+    // Intelligence functions
     public int getCharacterIntelligence() { return intelligence; }
+    public int getTotalIntelligence() { return intelligence + (weapon != null ? weapon.getWeaponPower(): 0); }
+    private void setIntelligence(int intelligence) { this.intelligence = intelligence; }
 
-    public int getTotalIntelligence() {
-        return intelligence + (weapon != null ? weapon.getPower(): 0);
-    }
-
-    private void setIntelligence(int intelligence) {
-        if (intelligence >= 0) {
-            this.intelligence = intelligence;
-        } else {
-            this.intelligence = 0;
-            System.out.println("Invalid intelligence! Setting to 0.");
-        }
-    }
-
+    // Weapon functions
     public Weapon getWeapon() { return weapon; }
-
-    public void equipWeapon( Weapon weapon ) {
-        this.weapon = weapon;
-    }
+    public void equipWeapon( Weapon weapon ) { this.weapon = weapon; }
 }
